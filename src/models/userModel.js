@@ -8,12 +8,12 @@ class User {
         this.password = password;
     }
 
-    createUser() {
+    async createUser() {
 
         const query = `INSERT INTO users(username, name, surname, password) VALUES (?, ?, ?, ?)`; 
 
         db.run(query, [this.surname, this.name, this.surname, this.password], err => {
-            if (err) console.error('Error when try to INSERT User.')
+            if (err) throw new Error('Error when try to INSERT User.')
 
             console.log(`User with username "${this.username} INSERTED."`);
 
